@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify a Donation – Service Human</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <main class="wrap">
+    <h1>Live Donation Ledger</h1>
+    <p>Real-time public record of donation activity. All entries are verified and non-PII.</p>
+
+    <table class="ledger">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Amount</th>
+          <th>Date / Time</th>
+          <th>Verify</th>
+        </tr>
+      </thead>
+      <tbody id="ledger-body">
+        <tr><td colspan="4" id="ledger-error" style="text-align:center;">Loading...</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>© <span id="yr"></span> Service Human Inc. — All donations are publicly verifiable and 100% secure.</p>
+  </footer>
+
+  <script>
+  (async () => {
+    const url = '/progress/data/progress.json?v=' + Date.now(); // cache-bust
+    const params = new URLSearchParams(location.search);
+    const receiptId = (params.get('r') || '').trim();
+
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`Failed to load ledger: ${res.status} ${res.statusText}`);
+
+      const ct = res.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) throw new Error('Ledger response is not JSON');
+
+      const data = await res.json();
+      const tbody = document.getElementById('ledger-body');
+      const errorCell = document.getElementById('ledger-error');
+
+      let events = (data.events || []).filter(e => e.kind === 'donation' || e.amount);
+
+      // If a specific receipt id was passed, narrow to that one
+      if (receiptId) {
+        const idNorm = receiptId.toLowerCase();
+        const matched = events.filter(e => {
+          const candidate =
+            (e.receipt || e.verify || '').toString().trim().toLowerCase();
+          return candidate && candidate === idNorm;
+        });
+
+        if (matched.length === 0) {
+          if (errorCell) {
+            errorCell.textContent = 'We couldn’t find a donation matching that receipt.';
+          }
+          events = []; // nothing to render
+        } else {
+          events = matched;
+          if (errorCell) errorCell.textContent = 'Match found:';
+        }
+      }
+
+      if (!events.length && !receiptId) {
+        if (errorCell) errorCell.textContent = 'No donations recorded yet.';
+        return;
+      }
+
+      tbody.innerHTML = events
+        .map(e => {
+          const title = e.event || e.item || '-';
+          const amount = (e.amount ?? (e.amount_cents / 100)) || 0;
+          const currency = e.currency || data.currency || 'USD';
+          const ts = e.ts ? new Date(e.ts).toLocaleString() : '-';
+          const verifyHtml = e.verify
+            ? `<a href="${e.verify}" target="_blank" rel="noopener noreferrer" class="verifyLink">Verify ↗</a>`
+            : '-';
+
+          return `
+            <tr>
+              <td>${title}</td>
+              <td>${amount.toLocaleString('en-US', { style: 'currency', currency })}</td>
+              <td>${ts}</td>
+              <td>${verifyHtml}</td>
+            </tr>`;
+        })
+        .join('');
+    } catch (err) {
+      console.error(err);
+      const row = document.querySelector('#ledger-error');
+      if (row) row.textContent = 'Error loading ledger.';
+    }
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  })();
+</script>
+<script src="/js/theme.js"></script>
+</body>
+</html>
