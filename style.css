@@ -1,0 +1,394 @@
+/* =====================================================
+   Service Human — Core Theme & Components
+   ===================================================== */
+
+/* --- Global header brand + status dot --- */
+header.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 16px;
+}
+header.site-header a.brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  color: #a7c4ff;
+  text-decoration: none;
+  transition: color .3s ease, text-shadow .3s ease;
+}
+header.site-header a.brand:hover {
+  color: #00ffcc;
+  text-shadow: 0 0 8px #00ffcc66;
+}
+header.site-header nav {
+  display: flex;
+  gap: 24px;
+}
+
+/* steady "Always Online" pulse */
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: #00ffcc;
+  box-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffcc55;
+  animation: pulseDot 2.5s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 4px #00ffcc55, 0 0 8px #00ffcc22; opacity: .85; }
+  50% { box-shadow: 0 0 8px #00ffccaa, 0 0 20px #00ffcc66; opacity: 1; }
+  100% { box-shadow: 0 0 4px #00ffcc55, 0 0 8px #00ffcc22; opacity: .85; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .status-dot { animation: none !important; }
+}
+
+/* ===== THEME VARIABLES ===== */
+
+/* Base = dark (default) */
+:root {
+  --bg:#0b0e13;
+  --text:#e9edf5;
+  --muted:#a8b6cc;
+  --card:#11151d;
+  --border:#151b20;
+  --violet:#673aed;
+  --blue:#3b82f6;
+  --accent:#9b8cff;
+  --ring:rgba(124,58,237,.35);
+}
+
+/* Auto-switch to light if the OS prefers it (can be overridden manually) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:#f7f8fb;
+    --text:#11151d;
+    --muted:#485569;
+    --card:#ffffff;
+    --border:#e5e9f0;
+    --violet:#7c4dff;
+    --blue:#2653eb;
+    --accent:#7c4dff;
+    --ring:rgba(60,132,244,.28);
+  }
+}
+
+/* Manual overrides (persisted by JS with html.classList) */
+html.dark {
+  --bg:#0b0e13;
+  --text:#e9edf5;
+  --muted:#a8b6cc;
+  --card:#11151d;
+  --border:#151b20;
+  --violet:#673aed;
+  --blue:#3b82f6;
+  --accent:#9b8cff;
+  --ring:rgba(124,58,237,.35);
+}
+html.light {
+  --bg:#f7f8fb;
+  --text:#11151d;
+  --muted:#485569;
+  --card:#ffffff;
+  --border:#e5e9f0;
+  --violet:#7c4dff;
+  --blue:#2653eb;
+  --accent:#7c4dff;
+  --ring:rgba(60,132,244,.28);
+}
+
+/* (keep the rest of your stylesheet below this) */
+}
+/* Optional: explicitly mark dark (defaults already come from :root) */
+html.dark{ /* no changes needed if :root is your dark scheme */ }
+/* =====================================================
+   BASE
+   ===================================================== */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 28px 16px; }
+
+/* Links (global) */
+a {
+  color: #a7c4ff;
+  text-decoration: none;
+  transition: color .3s ease, text-shadow .3s ease;
+}
+a:hover {
+  color: #00ffcc;
+  text-shadow: 0 0 6px #00ffcc66;
+}
+
+/* Unified link hover vibe */
+:where(a, .footLink, header a, footer a) {
+  transition: color .3s ease, text-shadow .3s ease;
+}
+:where(a, .footLink, header a, footer a):hover {
+  color: #00ffcc;
+  text-shadow: 0 0 6px #00ffcc66;
+}
+
+/* Accessible focus ring */
+:where(a, button, [role="button"], input, select, textarea):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--ring);
+  border-radius: 6px;
+}
+
+/* Headings & text helpers */
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 10px; }
+h2 { font-size: 24px; margin: 0 0 10px; }
+.h3 { font-size: 18px; margin: 0 0 4px; }
+.lead { font-size: 18px; color: var(--muted); }
+.muted { color: var(--muted); }
+.fine { color: #93a3b5; font-size: 14px; }
+
+/* Pills */
+.pill {
+  display: inline-block;
+  background: #0f1320;
+  border: 1px solid var(--border);
+  color: #cfe0ff;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+}
+.pillline { display: inline-block; margin-top: 10px; }
+
+/* =====================================================
+   NAV
+   ===================================================== */
+.nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0 16px;
+}
+.brand { font-weight: 800; }
+.dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--violet);
+  box-shadow: 0 0 0 3px rgba(103,58,237,.25);
+  margin-right: 6px;
+}
+.sp { flex: 1; }
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.btn, .btnn {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 800;
+  border-radius: 9999px;
+  padding: 10px 16px;
+  border: 0;
+  display: inline-block;
+}
+.btn:hover, .btnn:hover { filter: brightness(1.06); text-decoration: none; }
+.btnn.b2 { background: var(--violet); }
+.btnn.b3 { background: #facc15; color: #111; }
+.ctaRow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+
+/* =====================================================
+   GRID & CARDS
+   ===================================================== */
+.grid {
+  display: grid;
+  gap: 16px;
+  margin: 22px 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 0 0 1px rgba(124,58,237,.08);
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.card ul { margin: 0 0 6px 18px; }
+.card:hover { transform: translateY(-1px); box-shadow: 0 2px 14px rgba(0,0,0,.25); }
+
+/* =====================================================
+   SECTIONS
+   ===================================================== */
+.hero { margin: 16px 0 24px; }
+.story p { margin: 0; }
+.stack { display: flex; flex-direction: column; gap: 8px; }
+.amt { font-size: 28px; font-weight: 800; margin: 0 0 6px; }
+.title { font-weight: 700; }
+
+/* Payment buttons */
+.paybtn {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 10px;
+  font-weight: 800;
+}
+.paybtn.b1 { background: var(--blue); color: #fff; }
+.paybtn.b2 { background: var(--violet); color: #fff; }
+.paybtn.b3 { background: #facc15; color: #111; }
+.customBtns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0 32px;
+  margin-top: 64px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .9em;
+  background: var(--card);
+  box-shadow: 0 -1px 0 rgba(124,58,237,.08), 0 -8px 32px rgba(0,255,204,.05) inset;
+}
+.foot { margin-top: 28px; border-top: 1px solid var(--border); padding-top: 16px; }
+.foot .grid { grid-template-columns: 1fr 1fr; }
+
+footer .label {
+  display: block;
+  font-weight: 600;
+  color: #cfe0ff;
+  margin-bottom: 6px;
+}
+.footLink {
+  color: #a7c4ff;
+  text-decoration: none;
+  margin: 0 8px;
+}
+.footLink:hover {
+  color: #00ffcc;
+  text-shadow: 0 0 6px #00ffcc66;
+}
+footer .fine {
+  margin-top: 32px;
+  font-size: 0.8em;
+  color: #777;
+}
+
+/* =====================================================
+   SPECIAL EFFECTS
+   ===================================================== */
+
+/* Glow effect for active HUB cards */
+.hub-card.active {
+  border-color: #00ffcc99;
+  box-shadow: 0 0 12px #00ffcc55;
+}
+
+/* Ledger Verify link */
+.verifyLink {
+  color: #00ffcc;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dotted #00ffcc66;
+}
+.verifyLink:hover {
+  color: #a7c4ff;
+  border-bottom-color: #a7c4ff66;
+}
+
+/* Responsive table support */
+@media (max-width: 560px) {
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  td, th { white-space: nowrap; }
+}
+.status-dot {
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+html.dark .status-dot {
+  background: #00ffcc;
+  box-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffcc55;
+}
+
+html.light .status-dot {
+  background: #673aed;
+  box-shadow: 0 0 8px #673aed, 0 0 16px #c9a7ff55;
+}
+/* ===== THEME-RESPONSIVE TOGGLE BUTTON ===== */
+/* Floating, draggable theme toggle */
+#themeToggle {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  cursor: grab;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 16px;
+  font-weight: 700;
+
+  /* default style (dark mode assumed) */
+  background: var(--violet);
+  color: #fff;
+
+  /* glow */
+  box-shadow: 0 0 18px rgba(124,58,237,.6);
+
+  /* animations */
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  /* reduce jitter on drag */
+  touch-action: none;
+}
+
+#themeToggle.dragging {
+  cursor: grabbing;
+  opacity: 0.92;
+  box-shadow: 0 0 26px rgba(0,255,204,.8);
+}
+
+/* Dark theme */
+html.dark #themeToggle {
+  background: var(--violet);
+  color: #fff;
+  box-shadow: 0 0 6px rgba(103, 58, 237, 0.5);
+}
+html.dark #themeToggle:hover {
+  background: #7c4dff;
+  box-shadow: 0 0 10px rgba(103, 58, 237, 0.7);
+}
+
+/* Light theme */
+html.light #themeToggle {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 0 6px rgba(37, 83, 235, 0.4);
+}
+html.light #themeToggle:hover {
+  background: #2653eb;
+  box-shadow: 0 0 10px rgba(37, 83, 235, 0.6);
+}
+
+/* Button press animation */
+#themeToggle:active {
+  transform: scale(0.96);
+}

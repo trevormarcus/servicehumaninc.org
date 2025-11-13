@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Service Human • Dev Dashboard</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;margin:0;background:#0b0f14;color:#e6edf3}
+    .wrap{max-width:980px;margin:40px auto;padding:0 20px}
+    header{margin-bottom:24px}
+    h1{font-size:28px;margin:0 0 8px}
+    p{color:#9fb0c0;line-height:1.6}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:24px 0}
+    .card{background:#0f1621;border:1px solid #273142;border-radius:12px;padding:16px}
+    .card h3{margin:0 0 10px;font-size:16px}
+    a.btn{display:inline-block;padding:10px 12px;border-radius:10px;border:1px solid #2f3a4c;text-decoration:none;color:#e6edf3}
+    a.btn:hover{background:#121b28}
+    code, pre{background:#0b1220;border:1px solid #233047;border-radius:10px;color:#dcf1ff}
+    code{padding:2px 6px}
+    pre{padding:14px;overflow:auto}
+    .muted{color:#9fb0c0}
+    table{width:100%;border-collapse:collapse}
+    th,td{border-bottom:1px solid #273142;padding:10px 8px;text-align:left}
+    .pill{display:inline-block;padding:2px 8px;border:1px solid #2f3a4c;border-radius:999px;font-size:12px;color:#9fb0c0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Service Human • Dev Dashboard</h1>
+      <p class="muted">Quick links, validators, reusable snippets, and a simple changelog for <strong>servicehumaninc.org</strong>.</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Site & Files</h3>
+        <p>
+          <a class="btn" href="https://servicehumaninc.org/" target="_blank">Open Live Site</a>
+        </p>
+        <p>
+          Quick file links (must exist in <code>public_html</code>):<br>
+          • <a href="/index.html" target="_blank">index.html</a><br>
+          • <a href="/style.css" target="_blank">style.css</a><br>
+          • <a href="/social-preview.jpg" target="_blank">social-preview.jpg</a>
+        </p>
+        <p class="muted">Note: Edit via Bluehost → Advanced → File Manager → <code>public_html</code>.</p>
+      </div>
+
+      <div class="card">
+        <h3>Share Preview Validators</h3>
+        <p>
+          <a class="btn" target="_blank" href="https://developers.facebook.com/tools/debug/">Meta Sharing Debugger</a><br><br>
+          <a class="btn" target="_blank" href="https://cards-dev.twitter.com/validator">X / Twitter Card Validator</a>
+        </p>
+        <p class="muted">Paste your URL and “Scrape Again” after changes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Publish Checklist</h3>
+        <ul class="muted">
+          <li>Update <code>index.html</code> &amp; <code>style.css</code></li>
+          <li>Upload new <code>social-preview.jpg</code> (1200×630)</li>
+          <li>Open validators and rescrape</li>
+          <li>Mobile check (iOS/Android)</li>
+          <li>Verify HTTPS lock icon</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Reusable Meta Block (paste inside <code>&lt;head&gt;</code>)</h3>
+      <pre>&lt;meta name="description" content="Service Human is building the next operating system for humanity — where compassion replaces currency. Join the movement for a world that no longer needs money."&gt;
+
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:url" content="https://servicehumaninc.org/"&gt;
+&lt;meta property="og:title" content="Service Human | The World After Money"&gt;
+&lt;meta property="og:description" content="Imagine a world that no longer needs money — where compassion, service, and connection form the foundation of a new global system."&gt;
+&lt;meta property="og:image" content="https://servicehumaninc.org/social-preview.jpg"&gt;
+
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:url" content="https://servicehumaninc.org/"&gt;
+&lt;meta name="twitter:title" content="Service Human | The World After Money"&gt;
+&lt;meta name="twitter:description" content="Service Human is building the next operating system for humanity — where compassion replaces currency."&gt;
+&lt;meta name="twitter:image" content="https://servicehumaninc.org/social-preview.jpg"&gt;</pre>
+      <p class="muted">Tip: keep title ≤ 60 chars; description ≤ 155 chars.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Favicon (optional)</h3>
+        <p>Upload <code>favicon.ico</code> to <code>public_html</code>, then add:</p>
+        <pre>&lt;link rel="icon" href="/favicon.ico" sizes="any"&gt;</pre>
+      </div>
+
+      <div class="card">
+        <h3>Simple Email Capture (Formspree)</h3>
+        <p class="muted">Drop-in form that emails you signups (replace <code>YOUR_FORM_ID</code> after you create one on formspree.io).</p>
+        <pre>&lt;form action="https://formspree.io/f/YOUR_FORM_ID" method="POST"&gt;
+  &lt;input type="email" name="email" placeholder="Your email" required&gt;
+  &lt;button type="submit"&gt;Count Me In&lt;/button&gt;
+&lt;/form&gt;</pre>
+      </div>
+
+      <div class="card">
+        <h3>Cache-Busting (quick)</h3>
+        <p class="muted">Force browsers to fetch the latest CSS.</p>
+        <pre>&lt;link rel="stylesheet" href="style.css?v=1.0.0"&gt;</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Changelog</h3>
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Change</th><th>By</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2025-10-31</td><td>Initial launch, meta tags, social preview</td><td>Trevor</td><td><span class="pill">live</span></td></tr>
+        </tbody>
+      </table>
+      <p class="muted">Add rows as you iterate (helps future-you remember what changed).</p>
+    </div>
+
+    <p class="muted" style="margin-top:24px">Pro tip: keep this dashboard unlinked (direct URL only). If you ever want to restrict it, we can add basic auth.</p>
+  </div>
+</body>
+</html>

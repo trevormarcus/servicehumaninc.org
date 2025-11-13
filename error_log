@@ -1,0 +1,1 @@
+[29-Oct-2025 14:00:52 UTC] Cron reschedule event error for hook: wpseo_permalink_structure_check, Error code: could_not_set, Error message: The cron event list could not be saved., Data: {"schedule":"daily","args":[],"interval":86400}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Page Not Found – Service Human</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="header"></div>
+  <script>
+    fetch("/partials/header.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("header").outerHTML = html; });
+  </script>
+
+  <main class="wrap" style="padding:48px 24px;">
+    <h1>Page not found.</h1>
+    <p class="muted">
+      The URL you tried doesn’t exist yet.  
+      Head back to <a href="/">Service Human</a>,  
+      check <a href="/progress/">Live Progress</a>,  
+      or <a href="/donate/">support a human today</a>.
+    </p>
+  </main>
+
+  <script src="/js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>He thought he’d found a pot of gold – Service Human</title>
+  <meta name="description"
+        content="A short, funny story about an attempted scan that thought it struck gold – and why we laugh it off." />
+
+  <!-- Site-wide styles (theme variables, nav, floating toggle, etc.) -->
+  <link rel="stylesheet" href="/style.css" />
+
+  <style>
+    /* ============== Page-specific styles for this story ============== */
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #020617 50%, #020617 100%);
+      color: #e5e7eb;
+    }
+
+    main.wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 32px 24px 40px;
+    }
+
+    /* Console “prelude” */
+
+    .terminal {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.85);
+      margin-bottom: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(56,189,248,0.35);
+    }
+
+    .terminal-header {
+      padding: 10px 14px;
+      background: radial-gradient(circle at top left, #020617 0, #0f172a 45%, #020617 100%);
+      border-bottom: 1px solid rgba(56,189,248,0.35);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.95);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .term-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+    }
+
+    .terminal-title {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    pre#console-log {
+      margin: 0;
+      padding: 16px 18px 18px;
+      background: radial-gradient(circle at top left, #020617 0, #020617 55%, #020617 100%);
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #bbf7d0;
+      white-space: pre-wrap;
+      min-height: 160px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      background: #22c55e;
+      margin-left: 2px;
+      animation: blink 1s steps(1, start) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .raccoon-teaser {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 14px;
+      color: #e5e7eb;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .raccoon-teaser span {
+      display: block;
+      font-size: 38px;
+      margin-bottom: 4px;
+    }
+
+    .raccoon-teaser small {
+      display: block;
+      margin-top: 4px;
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    /* Story content appears after console finishes */
+
+    .story {
+      background: #020617;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.75);
+      padding: 26px 24px 24px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    body.show-story .story {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    body.show-story .raccoon-teaser {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 26px;
+      letter-spacing: .02em;
+      color: #f9fafb;
+    }
+
+    p.lead {
+      margin: 0 0 18px;
+      font-size: 15px;
+      color: #e5e7eb;
+    }
+
+    article p {
+      line-height: 1.6;
+      margin: 0 0 14px;
+      color: #d1d5db;
+      font-size: 15px;
+    }
+
+    article em {
+      color: #bae6fd;
+      font-style: normal;
+    }
+
+    footer.story-foot {
+      margin-top: 18px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.35);
+      padding-top: 12px;
+      font-size: 13px;
+      color: #9ca3af;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    footer.story-foot a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    footer.story-foot a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 520px) {
+      main.wrap {
+        padding: 24px 16px 32px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      article p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Global header placeholder (nav is injected here) -->
+  <div id="header"></div>
+  <script>
+    fetch("/partials/header.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("header").outerHTML = html;
+      });
+  </script>
+
+  <!-- Floating theme toggle (styled + made draggable by /js/theme.js) -->
+  <div id="themeToggle">Theme</div>
+
+  <main class="wrap" role="main">
+    <!-- Console prelude -->
+    <section class="terminal" aria-label="Raccoon shield console">
+      <div class="terminal-header">
+        <span class="term-dot"></span>
+        <span class="terminal-title">servicehumaninc.org • Raccoon Shield</span>
+      </div>
+      <pre id="console-log"></pre>
+    </section>
+
+    <div class="raccoon-teaser" id="raccoon-teaser">
+      <span>🦝👑</span>
+      <div>Access granted: raccoon protocol online.</div>
+      <small>Decrypting GIF… then loading the full incident report.</small>
+    </div>
+
+    <!-- Story card – revealed after console finishes -->
+    <section class="story" aria-label="The night a hacker thought he’d struck gold">
+      <h1>He thought he’d found a pot of gold</h1>
+      <p class="lead">
+        A little story about a night someone celebrated an “F” – and what happened next.
+      </p>
+
+      <article>
+        <p>
+          He swaggered into his dimly lit command cave – hoodie up, energy drink at elbow,
+          three monitors arranged like a cockpit. On the center screen: the crowning prize
+          of the evening, a security scanner’s red <strong>F</strong> badge over
+          <em>Service Human</em>. He let out a triumphant whoop, as if he’d just found a
+          hacker’s El Dorado.
+        </p>
+
+        <p>
+          “Finally,” he muttered, fingers hovering over the keyboard with the solemnity of
+          someone about to defuse a bomb. “They’ll feel my wrath. I’ll be famous on the forum
+          for twelve whole hours.”
+        </p>
+
+        <p>
+          He rolled up his sleeves, typed one carefully calculated exploit command, and hit
+          Enter. The lights in his cave flickered – not from the Internet, but because the cat
+          had jumped on the power strip. The command returned… nothing. He squinted. He tried
+          again. A new line appeared: a polite server response. Huh. He frowned, peered at the
+          screen like it was an ancient rune, and realized the site’s origin was calmly masked
+          behind a practical little protective grin.
+        </p>
+
+        <p>
+          Exasperated, he scrolled further and discovered the <strong>F</strong> wasn’t a flag
+          of victory but more of a suggestion – the site was missing some optional checklist
+          items a scanner likes to see. Like finding a restaurant with a slightly burnt garlic
+          knot on Yelp and assuming the whole kitchen is on fire. He chuckled, feeling both
+          foolish and oddly impressed.
+        </p>
+
+        <p>
+          To save face, he posted a smug screenshot in his favorite chat:
+          <em>“Cracked it – F-rated nonprofit, easy win.”</em> The first reply came back
+          in thirty seconds: a GIF of a raccoon wearing a tiny crown. The second reply:
+          <em>“Bro, they’ve got transforms and protections. You’re just pinging the edge.
+          LMAO.”</em> The thread filled with polite, merciless laughter. Someone even dropped
+          a beginners’ guide titled: <em>“How to Stop Announcing Your Failed Scans.”</em>
+        </p>
+
+        <p>
+          He sulked, then did what hackers do when pride is injured: he opened a new terminal,
+          typed a harmless update command like he was repairing his dignity, and ordered
+          another energy drink. Later that night, at 2 a.m., he stared at his reflection in the
+          dark screen and decided – reluctantly, honorably – that maybe this “pot of gold”
+          was actually a cleverly placed decoy. He closed the tab, not because he’d been
+          defeated, but because the raccoon GIF had him in stitches. Laughing at yourself is
+          underrated.
+        </p>
+
+        <p>
+          Back in the nonprofit’s office (or wherever nonprofit people hang out – a coffee
+          shop, the astral plane), the founder said, “If somebody spends an hour trying to take
+          us down because of an F on a scanner, we just bought ourselves free comedy content.”
+          They posted: <em>“Today’s attempted hack brought more Internet laughter than harm.”</em>
+          It went viral for all the right reasons.
+        </p>
+
+        <p>
+          And the hacker? He learned two things: don’t trash-talk sites you don’t understand,
+          and next time, bring a cat-proof power strip. Also, never underestimate the morale
+          boost a free raccoon GIF can deliver.
+        </p>
+      </article>
+
+      <footer class="story-foot">
+        <div>
+          We take our mission – and our security – seriously. If you find anything real,
+          report it responsibly.
+        </div>
+        <div>
+          <a href="mailto:trevor@servicehumaninc.org">Report to Trevor</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Lightweight log ping (same spirit as the old version)
+    try {
+      fetch("/api/log-click", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "hacker_story_view",
+          time: new Date().toISOString()
+        })
+      });
+    } catch (e) {
+      // non-critical; ignore
+    }
+
+    const logEl = document.getElementById("console-log");
+    const bodyEl = document.body;
+
+    const lines = [
+      "servicehumaninc.org :: Raccoon Shield v1.0",
+      "--------------------------------------------------",
+      "[ INIT  ] Spinning up perimeter checks…",
+      "[ SCAN  ] Someone just poked the ‘F-rated’ port…",
+      "[ INFO  ] F = missing nice-to-haves, not instant pwn.",
+      "[ CHECK ] 100% of donations go to humans, 0% to superyachts.",
+      "[ FILTER] Routing noisy probes to raccoon protocol…",
+      "[ STATUS] Payload: crown-wearing raccoon GIF queued.",
+      "[ NEXT  ] Decrypting incident report for curious visitors."
+    ];
+
+    function appendLine(text) {
+      logEl.textContent += text + "\n";
+    }
+
+    async function runConsole() {
+      for (let i = 0; i < lines.length; i++) {
+        await new Promise(r => setTimeout(r, 450 + i * 80));
+        appendLine(lines[i]);
+      }
+
+      // Show story + raccoon teaser
+      bodyEl.classList.add("show-story");
+      appendLine("\n[ OPEN  ] Loading full story …");
+      appendLine("[ DONE  ] Raccoon protocol complete. Enjoy the read.");
+    }
+
+    function startCursor() {
+      const span = document.createElement("span");
+      span.className = "cursor";
+      logEl.appendChild(span);
+    }
+
+    runConsole();
+    startCursor();
+  </script>
+
+  <!-- Global theme / draggable toggle logic -->
+  <script src="/js/theme.js"></script>
+</body>
+</html>

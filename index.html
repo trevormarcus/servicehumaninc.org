@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1">
+  <title>Service Human – The World After Money</title>
+  <meta name="description" content="Service Human is building the next operating system for humanity – where compassion, service, and connection replace currency.">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<!-- Header Placeholder -->
+<div id="header"></div>
+
+<script>
+  fetch("/partials/header.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("header").outerHTML = html;
+
+      // Insert floating toggle AFTER header loads
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        `<div id="themeToggle">Theme</div>`
+      );
+    });
+</script>
+
+<!-- Theme system -->
+<script src="/js/theme.js"></script>
+
+  <!-- Social Metadata -->
+  <meta property="og:title" content="Service Human – The World After Money">
+  <meta property="og:description" content="Feed a human, fund a night of shelter, or give what feels right. 100% of every dollar goes directly where it should — to people.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://servicehumaninc.org/">
+  <meta property="og:image" content="https://servicehumaninc.org/social-preview.jpg">
+  <meta property="og:site_name" content="Service Human Inc.">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Service Human – The World After Money">
+  <meta name="twitter:description" content="Feed a human, fund a night of shelter, or give what feels right. 100% of every dollar goes directly where it should — to people.">
+  <meta name="twitter:image" content="https://servicehumaninc.org/social-preview.jpg">
+  <meta name="twitter:site" content="@_trevormarcus">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="/favicon.ico">
+
+  <style>
+    /* --- Always Online dot --- */
+    .status-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+      background: #00ffcc;
+      box-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffcc55;
+      animation: pulseDot 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0% { box-shadow: 0 0 4px #00ffcc55, 0 0 8px #00ffcc22; opacity: 0.8; }
+      50% { box-shadow: 0 0 8px #00ffccaa, 0 0 20px #00ffcc66; opacity: 1; }
+      100% { box-shadow: 0 0 4px #00ffcc55, 0 0 8px #00ffcc22; opacity: 0.8; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header a.brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      color: #a7c4ff;
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    header a.brand:hover {
+      color: #00ffcc;
+      text-shadow: 0 0 8px #00ffcc66;
+    }
+
+    header nav {
+      display: flex;
+      gap: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <button id="themeToggle" class="btnn b2" type="button" aria-pressed="false">
+        Toggle Theme
+    </button>
+
+    <a href="/" class="brand">
+        <span class="status-dot"></span>Service Human, Inc.
+    </a>
+
+    <nav>
+      <a href="/progress/">Live Progress</a>
+      <a href="/verify.html">Verify a Donation</a>
+    </nav>
+</header>
+
+  <!-- Main -->
+  <main class="wrap">
+    <p class="pill">100% to programs • No executive excess</p>
+    <h1>Service Human is building the next<br>operating system for humanity.</h1>
+    <p class="lead">Where compassion, service, and connection replace currency. Value is measured by how we lift one another — not by bank balance.</p>
+
+    <div class="ctaRow">
+      <a class="btn"
+        href="mailto:hello@servicehumaninc.org?subject=Post-Money%20Briefing%20Request&amp;body=Hi%20Service%20Human%20Team,%0A%0AI’d%20like%20to%20request%20the%20Post-Money%20Briefing.%0A%0APlease%20share%20details%20and%20next%20steps.%0A%0A—%20Your%20Name">
+        Get the Post-Money Briefing
+      </a>
+
+      <a class="btn b2"
+        href="mailto:hello@servicehumaninc.org?subject=Join%20the%20Movement&amp;body=Hi%20Service%20Human,%0A%0AI’m%20interested%20in%20joining%20the%20Movement.%20Let’s%20talk%20next%20steps.%0A%0A—%20Your%20Name">
+        Join the Movement
+      </a>
+    </div>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Post-Currency Society</h3>
+        <p>Value measured by contributions to collective wellbeing — not bank balance.</p>
+        <ul>
+          <li>Time banks for skill exchanges</li>
+          <li>Resource sharing platforms</li>
+          <li>Community support systems</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Compassion Economy</h3>
+        <p>Mutual aid replaces transactional thinking. Care is the unit of account.</p>
+        <ul>
+          <li>Needs-matching algorithms</li>
+          <li>Reputation based on service</li>
+          <li>Local Service Human Hubs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Collective Abundance</h3>
+        <p>Distribution by need creates true equity and resilience.</p>
+      </div>
+    </section>
+
+    <section class="story">
+      <h2>Our Story</h2>
+      <p>We’re dedicated to assisting humans — without corporate greed, excessive executive salaries, or political capture. Humanity’s next leap isn’t just technological, it’s spiritual and social. We evolve beyond money through a million acts of trust, service, and generosity.</p>
+
+      <div class="grid">
+        <div class="card"><h3>Imagine</h3><p>Reframe value around wellbeing and contribution.</p></div>
+        <div class="card"><h3>Prototype</h3><p>Start local hubs, pilot time banks &amp; sharing networks.</p></div>
+        <div class="card"><h3>Scale</h3><p>Connect hubs into resilient, post-money ecosystems.</p></div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <h2>Ready to help?</h2>
+      <p>Give once or monthly. Every dollar funds direct relief &amp; the build-out of 24/7 Service Human Hubs.</p>
+      <div class="ctaRow">
+        <a class="btn b2" href="/donate/">Donate Now</a>
+        <a class="btn"
+          href="mailto:hello@servicehumaninc.org?subject=Press%20/%20Partnership%20Inquiry&amp;body=Hi%20Service%20Human%20Press%20Team,%0A%0AI’d%20like%20to%20discuss%20a%20press%20or%20partnership%20opportunity.%20Please%20reach%20out.%0A%0AOrganization%20/Outlet:%20%0AName:%20%0A%0A—%20Your%20Name">
+          Press / Partnerships
+        </a>
+      </div>
+
+      <a href="mailto:hello@servicehumaninc.org?subject=Large%20Gift%20($10k%2B)%20–%20ACH%2FWire&amp;body=Hi%20Service%20Human,%0A%0AI’d%20like%20to%20make%20a%20large%20gift%20via%20ACH%2Fwire.%20Please%20send%20instructions.%0A%0AAmount%20(approx.):%20%0ATiming:%20%0A%0A—%20Your%20Name"
+        style="display:block; text-align:center; background:#7c4dff; color:#fff; padding:14px 12px; margin:18px 0; border-radius:8px; text-decoration:none; font-weight:800;">
+        Give $10k+ (ACH / Wire)
+      </a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <strong>Service Human, Inc.</strong> • EIN: <span id="ein">93-1924051</span><br>
+          <small>501(c)(3) public charity. Verify in the IRS Tax-Exempt Organization Search:</small><br>
+          <a class="footLink" href="https://apps.irs.gov/app/eos/" target="_blank" rel="noopener noreferrer">apps.irs.gov/app/eos/</a>
+        </div>
+        <div>
+          <span class="label">Contact:</span><br>
+          <a class="footLink"
+            href="mailto:hello@servicehumaninc.org?subject=Hello%20from%20Service%20Human&amp;body=Hi%20Service%20Human,%0A%0AJust%20reaching%20out%20via%20the%20website.%0A%0A—%20Your%20Name">
+            hello@servicehumaninc.org
+          </a><br>
+          <a class="footLink" href="/donate/">Donate</a><br>
+          <a class="footLink" href="/flor/">Flor Hub</a>
+        </div>
+      </div>
+
+      <p style="margin-top:16px;">
+        <a class="footLink" href="/progress/">Live Progress</a> •
+        <a class="footLink" href="/verify.html">Verify a Donation</a>
+      </p>
+      <p>© <span id="yr"></span> Service Human Inc. — All donations are publicly verifiable and 100% secure.</p>
+
+      <a class="footLink" href="/hackers/index.html" target="_blank" rel="noopener noreferrer">Hackers — click here</a>
+    </div>
+  </footer>
+<script>
+(() => {
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+
+  // 1) Apply saved manual choice (if any)
+  const saved = localStorage.getItem('theme'); // "light" | "dark" | null
+  if (saved === 'light' || saved === 'dark') {
+    html.classList.remove('light','dark');
+    html.classList.add(saved);
+    if (toggle) toggle.setAttribute('aria-pressed', saved === 'dark' ? 'true' : 'false');
+  }
+
+  // Helper to compute the “current” theme
+  const currentMode = () =>
+    html.classList.contains('light') ? 'light' :
+    html.classList.contains('dark')  ? 'dark'  :
+    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+
+  // 2) Manual toggle (persisted)
+  toggle?.addEventListener('click', () => {
+    const next = currentMode() === 'light' ? 'dark' : 'light';
+    html.classList.remove('light','dark');
+    html.classList.add(next);
+    localStorage.setItem('theme', next);
+    toggle.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+  });
+
+  // 3) If user has NO manual choice, follow OS changes live
+  const mq = matchMedia('(prefers-color-scheme: light)');
+  mq.addEventListener?.('change', e => {
+    if (localStorage.getItem('theme')) return; // manual choice wins
+    html.classList.remove('light','dark');
+    html.classList.add(e.matches ? 'light' : 'dark');
+    toggle?.setAttribute('aria-pressed', e.matches ? 'false' : 'true');
+  });
+})();
+</script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+  <script src="/js/theme.js"></script>
+</body>
+</html>
