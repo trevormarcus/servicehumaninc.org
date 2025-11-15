@@ -1,210 +1,109 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Decrypting Raccoon Protocol – Service Human</title>
-  <meta name="description" content="A friendly decoy for anyone poking around the wrong door. Raccoon protocol engaged." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Service Human, Inc.</title>
+<style>
+  body { font-family: Georgia, serif; margin:0; padding:0; color:#111; background:#fafafa; }
+  .wrap { max-width: 750px; margin: 0 auto; padding: 40px 20px; }
+  h1, h2, h3 { font-weight: normal; }
+  h1 { font-size: 28px; margin-bottom: 5px; }
+  h2 { margin-top: 40px; font-size: 22px; }
+  h3 { margin-top: 25px; font-size: 18px; }
+  p { line-height: 1.6; margin: 12px 0; }
+  a { color:#0645AD; text-decoration:none; }
+  a:hover { text-decoration: underline; }
 
-  <!-- Site-wide styles (theme variables, etc.) -->
-  <link rel="stylesheet" href="/style.css" />
+  .donate-box {
+    border:1px solid #ccc; padding:20px; background:white; margin-top:20px;
+  }
 
-  <style>
-    /* Full-screen dark console vibe */
-    html, body {
-      margin: 0;
-      height: 100%;
-    }
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top, #020617 0, #020617 30%, #020617 55%, #020617 100%);
-      color: #e5f2ff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-    }
+  .btn {
+    display:inline-block;
+    background:#333;
+    color:white;
+    padding:10px 18px;
+    text-decoration:none;
+    border-radius:4px;
+    margin-top:10px;
+  }
+  .btn:hover { background:#000; }
 
-    .wrap {
-      max-width: 640px;
-      width: 100%;
-      padding: 24px;
-    }
+  .blog-post {
+    border-top:1px solid #ddd; padding-top:20px; margin-top:20px;
+  }
 
-    .terminal {
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 16px;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9);
-      overflow: hidden;
-      border: 1px solid rgba(56,189,248,0.25);
-    }
-
-    .terminal-header {
-      padding: 10px 14px;
-      background: linear-gradient(90deg, #020617, #0f172a);
-      border-bottom: 1px solid rgba(56,189,248,0.25);
-      font-size: 13px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: rgba(148, 163, 184, 0.9);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
-    }
-
-    pre#log {
-      margin: 0;
-      padding: 16px 18px 18px;
-      background: radial-gradient(circle at top left, #0b1120 0, #020617 60%);
-      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 13px;
-      line-height: 1.45;
-      color: #bbf7d0;
-      white-space: pre-wrap;
-      min-height: 160px;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      background: #22c55e;
-      margin-left: 2px;
-      animation: blink 1s steps(1, start) infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    .raccoon {
-      margin-top: 18px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity .5s ease, transform .5s ease;
-      font-size: 15px;
-      color: #e5f2ff;
-    }
-
-    .raccoon-emoji {
-      font-size: 40px;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    body.show-raccoon .raccoon {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .raccoon small {
-      display: block;
-      margin-top: 4px;
-      color: #94a3b8;
-      font-size: 13px;
-    }
-
-    @media (max-width: 520px) {
-      .wrap {
-        padding: 18px;
-      }
-      pre#log {
-        font-size: 12px;
-      }
-    }
-  </style>
+  footer {
+    margin-top:60px;
+    padding:40px 20px;
+    background:#eee;
+    text-align:center;
+    font-size:14px;
+    color:#444;
+  }
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="terminal">
-      <div class="terminal-header">
-        <span class="dot"></span>
-        Service Human • Raccoon Shield Console
-      </div>
-      <pre id="log"></pre>
-    </div>
+<div class="wrap">
 
-    <div class="raccoon" id="raccoon">
-      <span class="raccoon-emoji">🦝👑</span>
-      <div>Access granted: Raccoon protocol online.</div>
-      <small>Decrypting GIF… then redirecting you to the full story.</small>
-    </div>
+  <!-- HEADER -->
+  <h1>Service Human, Inc.</h1>
+  <p><em>A 100% transparent nonprofit organization.</em></p>
+  <hr>
+
+  <!-- MISSION -->
+  <h2>Our Mission</h2>
+  <p>
+    Service Human exists for one purpose: to help human beings without ego, politics,
+    or personal gain. We believe in absolute transparency, zero executive compensation,
+    and a simple principle:
+  </p>
+  <p><strong>100% of every donation goes directly to humans who need help.</strong></p>
+
+  <!-- DONATIONS -->
+  <h2>Support the Work</h2>
+  <div class="donate-box">
+    <p>To contribute to Service Human, you may use the secure email or Stripe options below.</p>
+
+    <p><strong>Donate by email:</strong></p>
+    <p>
+      <a href="mailto:hello@servicehumaninc.org?subject=Donation%20Inquiry">
+        hello@servicehumaninc.org
+      </a>
+    </p>
+
+    <p><strong>Donate online:</strong></p>
+    <a class="btn" href="#">
+      Donate via Stripe (Coming Soon)
+    </a>
   </div>
 
-  <script>
-    // Lightweight click log (same idea as before)
-    try {
-      fetch("/api/log-click", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event: "hacker_click",
-          time: new Date().toISOString()
-        })
-      });
-    } catch (e) {
-      // fail silently – this is just a fun trap
-    }
+  <!-- BLOG SECTION -->
+  <h2>Articles & Updates</h2>
+  <p>Newest posts appear at the top.</p>
 
-    const logEl = document.getElementById("log");
-    const bodyEl = document.body;
+  <!-- BLOG POST TEMPLATE — duplicate this block for new posts -->
+  <div class="blog-post">
+    <h3>Sample Post Title</h3>
+    <p><em>January 2025</em></p>
+    <p>
+      This is a placeholder for your first article. You can manually edit this section
+      any time you want to publish a new update or write something for supporters.
+    </p>
+  </div>
+  <!-- END BLOG POST TEMPLATE -->
 
-    const lines = [
-      "[  INIT  ]  Booting Service Human shield...",
-      "[  SCAN  ]  Probing /donate endpoint for weaknesses...",
-      "[  INFO  ]  100% of funds go to humans, 0% to exec toys.",
-      "[  CHECK ]  Looking for F-rated exploit flag...",
-      "[  ALERT ]  Nonprofit is verified. No loot here.",
-      "[  ROUTE ]  Diverting you to the raccoon vault..."
-    ];
+  <!-- Add new posts above this line -->
 
-    function appendLine(text) {
-      logEl.textContent += text + "\n";
-    }
+</div>
 
-    async function runConsole() {
-      appendLine("servicehumaninc.org :: Raccoon Gateway v1.0");
-      appendLine("--------------------------------------------------");
+<!-- FOOTER -->
+<footer>
+  Service Human, Inc. • 100% transparent nonprofit<br>
+  © 2025 Service Human, Inc. All rights reserved.
+</footer>
 
-      for (let i = 0; i < lines.length; i++) {
-        await new Promise(r => setTimeout(r, 500 + i * 80));
-        appendLine(lines[i]);
-      }
-
-      // Show raccoon "payload"
-      bodyEl.classList.add("show-raccoon");
-
-      appendLine("\n[  OPEN  ]  Loading raccoon-king.gif …");
-      appendLine("[  NOTE  ]  Relax. This is a charity, not a crypto vault.");
-      appendLine("[  NEXT  ]  Redirecting to /hack.html");
-
-      // Give them a beat to read, then send to the story page
-      setTimeout(() => {
-        window.location.href = "/hack.html";
-      }, 2600);
-    }
-
-    // Tiny blinking cursor
-    function startCursor() {
-      const span = document.createElement("span");
-      span.className = "cursor";
-      logEl.appendChild(span);
-    }
-
-    runConsole();
-    startCursor();
-  </script>
-
-  <!-- Theme script (safe even without a visible toggle) -->
-  <script src="/js/theme.js"></script>
 </body>
 </html>
